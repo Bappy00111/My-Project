@@ -2,9 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Filed from "../common/Filed";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hook/useAuth";
 
 const LoginFrom = () => {
   const naviget = useNavigate();
+  const { setAuth } = useAuth();
   const {
     register,
     handleSubmit,
@@ -13,7 +15,9 @@ const LoginFrom = () => {
 
   const handleOnRegester = (fromData) => {
     console.log(fromData);
-    naviget('/')
+    const user = { ...fromData };
+    setAuth({user});
+    naviget("/");
   };
   return (
     <form
